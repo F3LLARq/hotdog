@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0705" />
+  <meta name="description" content="HOTDOG — not a dog coin. a hot dog coin." />
+  <meta property="og:title" content="HOTDOG" />
+  <meta property="og:description" content="not a dog coin. a hot dog coin." />
+  <meta property="og:image" content="./assets/hotdog-banner.png" />
+  <title>HOTDOG — fully cooked</title>
+  <style>
+    :root{
+      --bg:#090604;
+      --panel:#130b07;
+      --gold:#ffba08;
+      --mustard:#ffd21f;
+      --red:#c8321f;
+      --cream:#fff0cc;
+      --ink:#090604;
+      --muted:#b9aa90;
+      --line:rgba(255,210,31,.24);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--cream);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .noise{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+    .stars{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 20% 20%,rgba(255,186,8,.12),transparent 25%),radial-gradient(circle at 80% 10%,rgba(200,50,31,.12),transparent 23%),#090604}
+    .ticker{overflow:hidden;background:var(--mustard);color:#16100b;border-bottom:4px solid #000;font-weight:1000;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+    .ticker-track{display:inline-block;padding:10px 0;animation:marquee 18s linear infinite}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    nav{position:absolute;top:46px;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(18px,5vw,72px)}
+    .brand{font-weight:1000;font-size:clamp(23px,3vw,38px);letter-spacing:-.05em;text-shadow:3px 3px #000}
+    .xbtn,.btn{display:inline-flex;align-items:center;justify-content:center;border:3px solid #000;background:var(--mustard);color:#111;padding:12px 18px;font-weight:1000;text-transform:uppercase;box-shadow:6px 6px 0 #000;transition:.16s transform,.16s box-shadow}
+    .xbtn:hover,.btn:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 #000}
+    .hero{min-height:760px;position:relative;display:flex;align-items:flex-end;padding:130px clamp(18px,5vw,72px) 72px;background:linear-gradient(90deg,rgba(9,6,4,.92) 0%,rgba(9,6,4,.55) 40%,rgba(9,6,4,.08) 72%),url('./assets/hotdog-banner.png') center/cover no-repeat;border-bottom:6px solid #000}
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:180px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+    .hero-copy{position:relative;z-index:2;max-width:720px;padding-bottom:40px}
+    .eyebrow{font-size:14px;font-weight:1000;letter-spacing:.18em;color:var(--mustard);text-transform:uppercase;margin-bottom:14px}
+    h1{margin:0;font-size:clamp(78px,14vw,190px);line-height:.72;letter-spacing:-.09em;color:#fff7df;text-shadow:7px 7px 0 #000,12px 12px 0 var(--red)}
+    .hero-tag{font-weight:1000;font-size:clamp(24px,3vw,42px);line-height:1.05;margin:32px 0 0;max-width:650px}
+    .hero-tag em{font-style:normal;color:var(--mustard)}
+    .hero-small{font-weight:800;color:#d2c4a9;font-size:17px;margin-top:14px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+    .btn.dark{background:#111;color:#fff4d7;border-color:var(--mustard);box-shadow:6px 6px 0 var(--mustard)}
+    .section{padding:86px clamp(18px,5vw,72px)}
+    .manifesto{background:var(--mustard);color:#130d09;border-top:5px solid #000;border-bottom:5px solid #000;text-align:center}
+    .manifesto h2,.section-title{font-size:clamp(44px,8vw,105px);line-height:.86;letter-spacing:-.075em;margin:0;text-transform:uppercase;font-weight:1000}
+    .manifesto p{font-size:clamp(20px,2.6vw,34px);font-weight:950;max-width:920px;margin:28px auto 0;line-height:1.08}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:42px auto 0;max-width:1050px}
+    .stat{background:#fff6de;border:4px solid #000;padding:25px;box-shadow:8px 8px 0 var(--red);transform:rotate(var(--r))}
+    .stat b{display:block;font-size:clamp(24px,3vw,42px);line-height:.9}
+    .stat span{display:block;font-weight:850;margin-top:8px}
+    .story{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;max-width:1200px;margin:auto}
+    .story-media{position:relative}
+    .story-media img{display:block;width:100%;height:auto;border:5px solid var(--mustard);box-shadow:14px 14px 0 var(--red);transform:rotate(-2deg)}
+    .stamp{position:absolute;right:-15px;bottom:-22px;background:var(--mustard);color:#120b06;border:4px solid #000;padding:14px 18px;font-weight:1000;transform:rotate(5deg);box-shadow:6px 6px 0 #000}
+    .story-copy h2{font-size:clamp(42px,6vw,86px);line-height:.88;letter-spacing:-.065em;margin:0 0 24px}
+    .story-copy p{font-size:clamp(18px,2vw,27px);line-height:1.28;color:#d7c9ad;font-weight:760;margin:0 0 18px}
+    .quote{margin-top:28px;border-left:6px solid var(--mustard);padding:4px 0 4px 20px;font-weight:1000;font-size:clamp(24px,3vw,40px);color:#fff5d8}
+    .mission{background:linear-gradient(135deg,#170b07 0%,#090604 65%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .mission-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:42px;max-width:1240px;margin:auto;align-items:center}
+    .mission img{display:block;width:100%;height:auto;border:4px solid #000;box-shadow:10px 10px 0 var(--mustard)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+    .card{border:2px solid var(--line);background:rgba(255,255,255,.035);padding:24px;min-height:155px}
+    .card .num{font-size:13px;color:var(--mustard);font-weight:1000;letter-spacing:.14em}
+    .card b{display:block;font-size:28px;margin:8px 0 7px}
+    .card span{color:var(--muted);font-weight:700;line-height:1.25}
+    .origin{display:grid;grid-template-columns:.8fr 1.2fr;gap:46px;align-items:center;max-width:1100px;margin:auto}
+    .origin img{display:block;width:100%;height:auto;border:5px solid #000;box-shadow:12px 12px 0 var(--mustard);transform:rotate(2deg)}
+    .origin h2{font-size:clamp(42px,6vw,82px);line-height:.88;margin:0 0 20px;letter-spacing:-.06em}
+    .origin p{font-size:clamp(18px,2.2vw,27px);font-weight:780;color:#d5c5aa;line-height:1.25}
+    .final{background:var(--red);color:#fff5d8;text-align:center;border-top:6px solid #000}
+    .final-title{font-size:clamp(66px,13vw,175px);font-weight:1000;line-height:.72;letter-spacing:-.08em;text-shadow:7px 7px 0 #000;margin:0}
+    .final p{font-weight:950;font-size:clamp(20px,2.5vw,32px);margin:26px 0 0}
+    .final .hero-actions{justify-content:center}
+    footer{padding:32px clamp(18px,5vw,72px);display:flex;justify-content:space-between;gap:18px;align-items:center;background:#050302;color:#9d907a;font-weight:750;font-size:13px}
+    @media(max-width:860px){
+      nav{top:44px;padding-top:16px}.hero{min-height:690px;background-position:65% center}.hero-copy{padding-bottom:20px}.stats,.cards,.story,.mission-grid,.origin{grid-template-columns:1fr}.story,.mission-grid,.origin{gap:34px}.story-media{order:2}.story-copy{order:1}.section{padding-top:64px;padding-bottom:64px}.stamp{right:8px}.mission img{order:2}footer{flex-direction:column;align-items:flex-start}}
+    @media(max-width:520px){.xbtn{padding:10px 12px;font-size:12px}.hero{min-height:610px}.hero-tag{margin-top:24px}.stats{gap:12px}.stat{padding:18px}.cards{gap:12px}.card{min-height:auto}}
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="stars"></div>
+  <div class="ticker"><div class="ticker-track">NOT A DOG COIN&nbsp;&nbsp;🌭&nbsp;&nbsp;A HOT DOG COIN&nbsp;&nbsp;🚀&nbsp;&nbsp;FULLY COOKED&nbsp;&nbsp;🌭&nbsp;&nbsp;NOT A DOG COIN&nbsp;&nbsp;🌭&nbsp;&nbsp;A HOT DOG COIN&nbsp;&nbsp;🚀&nbsp;&nbsp;FULLY COOKED&nbsp;&nbsp;🌭&nbsp;&nbsp;</div></div>
+  <nav>
+    <div class="brand">HOTDOG</div>
+    <a class="xbtn" href="https://x.com/hottdogcoin" target="_blank" rel="noopener">X / TWITTER ↗</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">the dog meta got overcooked</div>
+      <h1>HOTDOG</h1>
+      <div class="hero-tag">not a dog coin.<br><em>a hot dog coin.</em></div>
+      <div class="hero-small">fully cooked · mustard powered · rocket approved</div>
+      <div class="hero-actions">
+        <a class="btn" href="https://x.com/hottdogcoin" target="_blank" rel="noopener">FOLLOW HOTDOG ↗</a>
+        <a class="btn dark" href="#story">WHAT IS THIS ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section manifesto">
+    <h2>FULLY COOKED.</h2>
+    <p>The internet already had dog coins. Nobody asked what happens when the dog itself gets cooked.</p>
+    <div class="stats">
+      <div class="stat" style="--r:-2deg"><b>DOG</b><span>confirmed</span></div>
+      <div class="stat" style="--r:1deg"><b>HOT DOG</b><span>also confirmed</span></div>
+      <div class="stat" style="--r:-1deg"><b>PLAN</b><span>questionable</span></div>
+    </div>
+  </section>
+
+  <section id="story" class="section">
+    <div class="story">
+      <div class="story-media">
+        <img src="./assets/hotdog-avatar.png" alt="HOTDOG riding a rocket" width="1254" height="1254" loading="lazy" decoding="async" />
+        <div class="stamp">CERTIFIED HOTDOG</div>
+      </div>
+      <div class="story-copy">
+        <h2>ONE DOG.<br>ONE COSTUME.<br>ZERO QUESTIONS.</h2>
+        <p>He put on a hot dog suit. Then somebody gave him a rocket. The rest of the internet decided not to interfere.</p>
+        <p>No complicated lore. No twelve-page manifesto. You look at him and you already understand everything you need to know.</p>
+        <div class="quote">“bro is literally a hot dog”</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mission">
+    <div class="mission-grid">
+      <div>
+        <div class="eyebrow">mission status: questionable</div>
+        <h2 class="section-title">FROM GRILL<br>TO SPACE.</h2>
+        <div class="cards">
+          <div class="card"><div class="num">01 / SUIT</div><b>GET COOKED</b><span>Put the dog in the hot dog costume. Nobody knows who started this.</span></div>
+          <div class="card"><div class="num">02 / FUEL</div><b>ADD MUSTARD</b><span>Scientifically unverified. Visually essential.</span></div>
+          <div class="card"><div class="num">03 / ROCKET</div><b>LEAVE EARTH</b><span>Probably the safest decision available at this point.</span></div>
+        </div>
+      </div>
+      <img src="./assets/hotdog-rocket.png" alt="HOTDOG rocket mission" width="2172" height="724" loading="lazy" decoding="async" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="origin">
+      <img src="./assets/hotdog-origin.jpg" alt="Original hot dog dog meme" width="1121" height="1403" loading="lazy" decoding="async" />
+      <div>
+        <div class="eyebrow">the source material</div>
+        <h2>THIS WAS ALL THE INTERNET NEEDED.</h2>
+        <p>A dog. A hot dog costume. A rocket. The entire concept fits inside one image — which is exactly why the joke works.</p>
+        <p>HOTDOG is built around one rule: <strong style="color:var(--mustard)">if the meme needs explaining, we already lost.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section final">
+    <h2 class="final-title">HOTDOG.</h2>
+    <p>not a dog coin. a hot dog coin.</p>
+    <div class="hero-actions">
+      <a class="btn" href="https://x.com/hottdogcoin" target="_blank" rel="noopener">@hottdogcoin ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>HOTDOG · fully cooked</span>
+    <span>No promises. Just the meme.</span>
+  </footer>
+</body>
+</html>
